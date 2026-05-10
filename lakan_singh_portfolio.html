@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lakan Singh Degavath — Senior ML & Ads Platform Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@300;400;500&family=Bricolage+Grotesque:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#0B0C0F;
+  --paper:#F5F2EB;
+  --paper2:#EDE9DF;
+  --red:#D62B2B;
+  --red-dim:#A82020;
+  --gold:#C49A3C;
+  --teal:#0A8A72;
+  --muted:#7A7367;
+  --mono:'DM Mono',monospace;
+  --serif:'Instrument Serif',serif;
+  --display:'Bebas Neue',sans-serif;
+  --body:'Bricolage Grotesque',sans-serif;
+}
+html{scroll-behavior:smooth;cursor:none}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;overflow-x:hidden}
+
+/* ── CURSOR ── */
+.cursor{position:fixed;width:12px;height:12px;border-radius:50%;background:var(--red);pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform 0.1s,width 0.2s,height 0.2s;mix-blend-mode:multiply}
+.cursor-ring{position:fixed;width:36px;height:36px;border-radius:50%;border:1px solid var(--ink);pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:transform 0.15s ease-out,width 0.2s,height 0.2s,opacity 0.2s;opacity:0.4}
+body:hover .cursor{opacity:1}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.5rem 3rem;display:flex;justify-content:space-between;align-items:center;mix-blend-mode:multiply}
+.nav-mark{font-family:var(--display);font-size:1.4rem;letter-spacing:0.05em;color:var(--ink)}
+.nav-links{display:flex;gap:2.5rem;list-style:none}
+.nav-links a{font-family:var(--mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color 0.2s}
+.nav-links a:hover{color:var(--ink)}
+
+/* ── HERO ── */
+#hero{min-height:100vh;display:grid;grid-template-rows:1fr auto;padding:7rem 3rem 3rem;position:relative;overflow:hidden}
+.hero-bg-text{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:var(--display);font-size:clamp(8rem,18vw,22rem);color:transparent;-webkit-text-stroke:1px rgba(0,0,0,0.06);white-space:nowrap;pointer-events:none;letter-spacing:0.04em;user-select:none}
+.hero-eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--red);margin-bottom:1.5rem;display:flex;align-items:center;gap:12px}
+.hero-eyebrow::before{content:'';display:block;width:28px;height:1px;background:var(--red)}
+.hero-name{font-family:var(--display);font-size:clamp(4rem,10vw,10rem);line-height:0.92;letter-spacing:0.03em;color:var(--ink);margin-bottom:1rem}
+.hero-name span{color:var(--red)}
+.hero-title{font-family:var(--serif);font-style:italic;font-size:clamp(1.2rem,2.5vw,2rem);color:var(--muted);margin-bottom:3rem;max-width:600px}
+.hero-cta{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:4rem}
+.btn{font-family:var(--mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;padding:14px 28px;text-decoration:none;transition:all 0.2s;display:inline-flex;align-items:center;gap:8px}
+.btn-solid{background:var(--ink);color:var(--paper);border:1px solid var(--ink)}
+.btn-solid:hover{background:var(--red);border-color:var(--red)}
+.btn-ghost{background:transparent;color:var(--ink);border:1px solid rgba(0,0,0,0.2)}
+.btn-ghost:hover{border-color:var(--ink);background:rgba(0,0,0,0.04)}
+.hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(0,0,0,0.1);border-top:1px solid rgba(0,0,0,0.1)}
+.stat-cell{background:var(--paper);padding:1.5rem 1rem;text-align:center}
+.stat-n{font-family:var(--display);font-size:2.8rem;color:var(--ink);display:block;line-height:1}
+.stat-l{font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-top:6px;display:block}
+
+/* ── SECTION SHELL ── */
+section{padding:6rem 3rem}
+.sec-label{font-family:var(--mono);font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--red);margin-bottom:0.75rem;display:flex;align-items:center;gap:10px}
+.sec-label::after{content:'';display:block;flex:1;height:1px;background:rgba(0,0,0,0.1);max-width:60px}
+.sec-h{font-family:var(--display);font-size:clamp(2.5rem,5vw,5rem);line-height:1;color:var(--ink);margin-bottom:3rem;letter-spacing:0.02em}
+
+/* ── ABOUT ── */
+#about{background:var(--ink);color:var(--paper)}
+#about .sec-label{color:var(--gold)}
+#about .sec-label::after{background:rgba(255,255,255,0.15)}
+#about .sec-h{color:var(--paper)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+.about-body{font-size:1.05rem;line-height:1.85;color:rgba(245,242,235,0.75)}
+.about-body p{margin-bottom:1.5rem}
+.about-body strong{color:var(--paper);font-weight:500}
+.about-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:2rem}
+.tag{font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;padding:6px 12px;border:0.5px solid rgba(255,255,255,0.15);color:rgba(245,242,235,0.6)}
+.about-contact{display:flex;flex-direction:column;gap:1rem;padding-left:2rem;border-left:1px solid rgba(255,255,255,0.1)}
+.contact-item{display:flex;flex-direction:column;gap:3px}
+.contact-item span:first-child{font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(245,242,235,0.35)}
+.contact-item a,.contact-item span:last-child{font-size:13px;color:rgba(245,242,235,0.75);text-decoration:none;transition:color 0.2s}
+.contact-item a:hover{color:var(--gold)}
+
+/* ── SKILLS ── */
+#skills{background:var(--paper2)}
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1px;background:rgba(0,0,0,0.08)}
+.skill-block{background:var(--paper2);padding:2rem;transition:background 0.2s}
+.skill-block:hover{background:var(--paper)}
+.skill-icon{font-family:var(--display);font-size:2rem;color:var(--red);margin-bottom:1rem;display:block}
+.skill-name{font-size:13px;font-weight:600;color:var(--ink);margin-bottom:0.6rem;letter-spacing:0.02em}
+.skill-list{font-family:var(--mono);font-size:10.5px;color:var(--muted);line-height:1.9;letter-spacing:0.02em}
+
+/* ── EXPERIENCE ── */
+#experience{background:var(--paper)}
+.timeline{position:relative;padding-left:2.5rem}
+.timeline::before{content:'';position:absolute;left:0;top:8px;bottom:0;width:1px;background:rgba(0,0,0,0.1)}
+.tl-entry{position:relative;margin-bottom:3.5rem;opacity:0;transform:translateY(20px);transition:opacity 0.6s ease,transform 0.6s ease}
+.tl-entry.visible{opacity:1;transform:translateY(0)}
+.tl-dot{position:absolute;left:-2.7rem;top:6px;width:10px;height:10px;border-radius:50%;background:var(--red);border:2px solid var(--paper)}
+.tl-meta{display:flex;align-items:baseline;gap:1rem;flex-wrap:wrap;margin-bottom:0.4rem}
+.tl-date{font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--red)}
+.tl-company{font-family:var(--mono);font-size:10px;letter-spacing:0.08em;color:var(--muted)}
+.tl-role{font-size:1.1rem;font-weight:600;color:var(--ink);margin-bottom:0.75rem}
+.tl-bullets{list-style:none}
+.tl-bullets li{font-size:14px;color:var(--muted);line-height:1.7;padding-left:1rem;position:relative;margin-bottom:5px}
+.tl-bullets li::before{content:'→';position:absolute;left:0;color:var(--red);font-size:11px;top:3px}
+.tl-bullets li strong{color:var(--ink);font-weight:500}
+.tl-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:1rem}
+.tl-tag{font-family:var(--mono);font-size:9px;letter-spacing:0.08em;text-transform:uppercase;padding:3px 8px;background:rgba(214,43,43,0.07);color:var(--red);border:0.5px solid rgba(214,43,43,0.2)}
+
+/* ── PROJECTS ── */
+#projects{background:var(--ink)}
+#projects .sec-label{color:var(--gold)}
+#projects .sec-label::after{background:rgba(255,255,255,0.15)}
+#projects .sec-h{color:var(--paper)}
+.proj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1px;background:rgba(255,255,255,0.06)}
+.proj-card{background:var(--ink);padding:2rem;position:relative;overflow:hidden;transition:background 0.25s}
+.proj-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform 0.3s}
+.proj-card:hover{background:#141518}
+.proj-card:hover::before{transform:scaleX(1)}
+.proj-num{font-family:var(--display);font-size:3.5rem;color:rgba(255,255,255,0.06);position:absolute;top:1rem;right:1.5rem;line-height:1}
+.proj-tag{font-family:var(--mono);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;display:block}
+.proj-name{font-size:1rem;font-weight:600;color:var(--paper);margin-bottom:0.75rem;line-height:1.4}
+.proj-desc{font-size:13px;color:rgba(245,242,235,0.5);line-height:1.7;margin-bottom:1.25rem}
+.proj-impact{font-family:var(--mono);font-size:11px;color:var(--teal);margin-bottom:1rem;line-height:1.6}
+.proj-stack{display:flex;flex-wrap:wrap;gap:5px}
+.proj-pill{font-family:var(--mono);font-size:9px;letter-spacing:0.06em;text-transform:uppercase;padding:3px 7px;border:0.5px solid rgba(255,255,255,0.1);color:rgba(245,242,235,0.35)}
+
+/* ── ACHIEVEMENTS ── */
+#achievements{background:var(--paper2)}
+.ach-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem}
+.ach-card{background:var(--paper);padding:1.75rem;border-left:3px solid var(--red);position:relative;overflow:hidden;opacity:0;transform:translateY(16px);transition:opacity 0.5s ease,transform 0.5s ease}
+.ach-card.visible{opacity:1;transform:translateY(0)}
+.ach-num{font-family:var(--display);font-size:3rem;color:var(--ink);line-height:1;margin-bottom:0.25rem}
+.ach-num span{font-size:1.5rem;color:var(--red)}
+.ach-label{font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted)}
+
+/* ── EDUCATION & CERTS ── */
+#education{background:var(--paper)}
+.edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem}
+.edu-item{padding:2rem;border:1px solid rgba(0,0,0,0.1);position:relative}
+.edu-item::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:var(--red)}
+.edu-deg{font-size:1rem;font-weight:600;color:var(--ink);margin-bottom:0.4rem}
+.edu-inst{font-family:var(--mono);font-size:11px;color:var(--muted);margin-bottom:0.25rem;letter-spacing:0.04em}
+.edu-yr{font-family:var(--mono);font-size:10px;color:var(--red);letter-spacing:0.08em}
+.certs-list{display:flex;flex-direction:column;gap:10px}
+.cert-row{display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:0.5px solid rgba(0,0,0,0.06)}
+.cert-row:last-child{border-bottom:none}
+.cert-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);flex-shrink:0;margin-top:6px}
+.cert-name{font-size:13px;color:var(--ink);line-height:1.4}
+.cert-by{font-family:var(--mono);font-size:10px;color:var(--muted);margin-top:2px;display:block;letter-spacing:0.04em}
+
+/* ── CONTACT ── */
+#contact{background:var(--red);color:var(--paper);text-align:center;padding:6rem 3rem}
+#contact .sec-label{color:rgba(245,242,235,0.5);justify-content:center}
+#contact .sec-label::after{background:rgba(245,242,235,0.2)}
+.contact-big{font-family:var(--display);font-size:clamp(3rem,8vw,8rem);color:var(--paper);line-height:1;margin-bottom:2rem;letter-spacing:0.03em}
+.contact-sub{font-family:var(--serif);font-style:italic;font-size:1.2rem;color:rgba(245,242,235,0.65);margin-bottom:3rem}
+.contact-links{display:flex;gap:2rem;justify-content:center;flex-wrap:wrap}
+.c-link{font-family:var(--mono);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(245,242,235,0.7);text-decoration:none;display:flex;align-items:center;gap:8px;transition:color 0.2s}
+.c-link:hover{color:var(--paper)}
+.c-link svg{width:15px;height:15px;opacity:0.6}
+
+/* ── SCROLL REVEAL ── */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.65s ease,transform 0.65s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* ── NOISE OVERLAY ── */
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:9997;opacity:0.4}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+.hero-eyebrow{animation:fadeUp 0.7s ease both}
+.hero-name{animation:fadeUp 0.7s 0.1s ease both}
+.hero-title{animation:fadeUp 0.7s 0.2s ease both}
+.hero-cta{animation:fadeUp 0.7s 0.3s ease both}
+.hero-stats{animation:fadeUp 0.7s 0.45s ease both}
+
+@media(max-width:768px){
+  nav{padding:1.25rem 1.5rem}
+  .nav-links{display:none}
+  #hero,section{padding:5rem 1.5rem 3rem}
+  .hero-stats{grid-template-columns:repeat(2,1fr)}
+  .about-grid,.edu-grid{grid-template-columns:1fr;gap:2rem}
+  .about-contact{padding-left:0;border-left:none;border-top:1px solid rgba(255,255,255,0.1);padding-top:1.5rem}
+}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cur"></div>
+<div class="cursor-ring" id="curR"></div>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-mark">LSD</span>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Work</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg-text">ML&nbsp;ADS</div>
+  <div>
+    <p class="hero-eyebrow">Available for senior roles · Philadelphia, PA</p>
+    <h1 class="hero-name">LAKAN<br>SINGH<br><span>DEGAVATH</span></h1>
+    <p class="hero-title">Senior ML &amp; Ads Platform Engineer — building real-time inference systems, ad decisioning infrastructure, and production AI at consumer scale.</p>
+    <div class="hero-cta">
+      <a href="#projects" class="btn btn-solid">View projects</a>
+      <a href="mailto:degavathlakansingh@gmail.com" class="btn btn-ghost">Get in touch</a>
+      <a href="https://linkedin.com/in/lakansingh" class="btn btn-ghost" target="_blank">LinkedIn ↗</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-cell"><span class="stat-n">6+</span><span class="stat-l">Years experience</span></div>
+    <div class="stat-cell"><span class="stat-n">60%</span><span class="stat-l">Latency reduction</span></div>
+    <div class="stat-cell"><span class="stat-n">10K+</span><span class="stat-l">RPS served</span></div>
+    <div class="stat-cell"><span class="stat-n">$200K</span><span class="stat-l">Cloud cost saved</span></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <p class="sec-label">Who I am</p>
+  <h2 class="sec-h">ABOUT ME</h2>
+  <div class="about-grid">
+    <div>
+      <div class="about-body">
+        <p>I'm a Senior ML &amp; Ads Platform Engineer with <strong>6+ years</strong> building high-throughput, low-latency systems for real-time ad decisioning, inventory forecasting, and audience targeting at consumer scale. Currently supporting <strong>Comcast's advertising ecosystem</strong> at Naav Tech — shipping ML-powered ad serving, pacing algorithms, and publisher-side inventory management that handles millions of ad events daily.</p>
+        <p>My work lives at the intersection of <strong>ML inference infrastructure</strong> and <strong>advertising technology</strong> — Triton Inference Server, TensorRT-LLM, vLLM, SSP/DSP integrations, OpenRTB programmatic pipelines, CPC/CPV/CPCV optimization, and Lucene-backed inventory indexes. I've reduced inference latency by 60%, saved $200K in cloud costs, and taken model deployment time from 2 weeks to under 4 hours.</p>
+        <p>Currently pursuing an <strong>M.S. in Computer Science (AI/ML)</strong> at Avila University. AWS Solutions Architect Associate &amp; Azure Fundamentals certified.</p>
+      </div>
+      <div class="about-tags">
+        <span class="tag">Ads Platform</span>
+        <span class="tag">ML Inference</span>
+        <span class="tag">Real-Time Systems</span>
+        <span class="tag">LLM Infra</span>
+        <span class="tag">CTV</span>
+        <span class="tag">Java Expert</span>
+        <span class="tag">Python Expert</span>
+        <span class="tag">Apache Spark</span>
+      </div>
+    </div>
+    <div class="about-contact">
+      <div class="contact-item">
+        <span>Email</span>
+        <a href="mailto:degavathlakansingh@gmail.com">degavathlakansingh@gmail.com</a>
+      </div>
+      <div class="contact-item">
+        <span>Phone</span>
+        <a href="tel:+13314311446">+1 (331) 431-1446</a>
+      </div>
+      <div class="contact-item">
+        <span>Location</span>
+        <span>Philadelphia, PA</span>
+      </div>
+      <div class="contact-item">
+        <span>LinkedIn</span>
+        <a href="https://linkedin.com/in/lakansingh" target="_blank">linkedin.com/in/lakansingh</a>
+      </div>
+      <div class="contact-item">
+        <span>Current role</span>
+        <span>Senior Ads Platform &amp; ML Engineer @ Naav Tech / Comcast</span>
+      </div>
+      <div class="contact-item">
+        <span>Education</span>
+        <span>M.S. CS — AI/ML · Avila University (Dec 2025)</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <p class="sec-label">Technical depth</p>
+  <h2 class="sec-h">CORE SKILLS</h2>
+  <div class="skills-grid">
+    <div class="skill-block">
+      <span class="skill-icon">01</span>
+      <div class="skill-name">Ad Serving &amp; Decisioning</div>
+      <div class="skill-list">Real-time ad decisioning · Bid ranking models · Dynamic allocation · Pacing algorithms · Budget management · CPC / CPV / CPCV · OpenRTB · SSP / DSP integration</div>
+    </div>
+    <div class="skill-block">
+      <span class="skill-icon">02</span>
+      <div class="skill-name">ML Inference Infrastructure</div>
+      <div class="skill-list">Triton Inference Server · TensorRT-LLM · vLLM · TorchServe · ONNX Runtime · Continuous batching · KV-cache optimization · INT8/FP16 quantization · 10K+ RPS</div>
+    </div>
+    <div class="skill-block">
+      <span class="skill-icon">03</span>
+      <div class="skill-name">Inventory &amp; Yield</div>
+      <div class="skill-list">Inventory forecasting · Yield optimization · Dynamic pricing · Rate card management · Fill-rate optimization · Ad server simulation · Demand modeling · Product packaging</div>
+    </div>
+    <div class="skill-block">
+      <span class="skill-icon">04</span>
+      <div class="skill-name">LLM &amp; GenAI</div>
+      <div class="skill-list">LangChain · LangGraph · LlamaIndex · RAG pipelines · LoRA/PEFT fine-tuning · Speculative decoding · OpenAI API · Claude API · Pinecone · ChromaDB · Multi-agent systems</div>
+    </div>
+    <div class="skill-block">
+      <span class="skill-icon">05</span>
+      <div class="skill-name">Cloud &amp; MLOps</div>
+      <div class="skill-list">AWS SageMaker · EKS · EC2 · Kinesis · Azure ML · Databricks · Docker · Kubernetes HPA · Terraform · MLflow · GitHub Actions · ArgoCD · Canary deployments</div>
+    </div>
+    <div class="skill-block">
+      <span class="skill-icon">06</span>
+      <div class="skill-name">Languages &amp; Frameworks</div>
+      <div class="skill-list">Java (Spring Boot · expert) · Python (expert) · Scala · C++ · Go · SQL · Bash · Multi-threading · Memory management · gRPC · REST APIs · Microservices</div>
+    </div>
+    <div class="skill-block">
+      <span class="skill-icon">07</span>
+      <div class="skill-name">Big Data &amp; Streaming</div>
+      <div class="skill-list">Apache Spark (PySpark/Scala) · Kafka Streams · Spark Streaming · Airflow · Hadoop · Hive · AWS Glue · Azure Data Factory · Lucene index at scale · Elasticsearch</div>
+    </div>
+    <div class="skill-block">
+      <span class="skill-icon">08</span>
+      <div class="skill-name">Observability &amp; Reliability</div>
+      <div class="skill-list">Prometheus · Grafana · Jaeger (distributed tracing) · Datadog · ELK Stack · P95/P99 latency monitoring · Automated drift detection · SLA alerting · Capacity planning</div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <p class="sec-label">Career history</p>
+  <h2 class="sec-h">WORK EXPERIENCE</h2>
+  <div class="timeline">
+
+    <div class="tl-entry">
+      <div class="tl-dot"></div>
+      <div class="tl-meta">
+        <span class="tl-date">Feb 2026 – Present</span>
+        <span class="tl-company">Naav Tech LLC · Supporting Comcast Advertising · Atlanta, GA</span>
+      </div>
+      <div class="tl-role">Senior Ads Platform &amp; ML Infrastructure Engineer</div>
+      <ul class="tl-bullets">
+        <li>Architected <strong>publisher-side ad serving infrastructure</strong> on AWS EKS — 10,000+ RPS, P99 &lt;50ms, 99.9% uptime across NLP ranking, audience targeting, and bid scoring models</li>
+        <li>Built <strong>SSP integration layer</strong> with OpenRTB-compliant programmatic pipelines — bid request/response handlers, auction logic, dynamic CPM floor pricing for direct and programmatic guaranteed/non-guaranteed inventory</li>
+        <li>Engineered <strong>SSAI pipeline</strong> with VAST/VMAP parsing, mid-roll break pacing, and CTV brand safety enforcement across TV, mobile, and web clients</li>
+        <li>Built <strong>Lucene-backed ad metadata index</strong> over millions of records — sub-100ms faceted search for real-time inventory availability and audience segment lookup</li>
+        <li>Developed <strong>campaign pacing &amp; budget management system</strong> — Kafka Streams real-time tracking with CPC/CPV/CPCV optimization, reducing delivery rate error by 30%</li>
+        <li>Streamlined research-to-production via Docker + GitHub Actions + MLflow — deployment time <strong>2 weeks → 4 hours</strong></li>
+        <li>Built LLM serving layer (vLLM + TensorRT-LLM) — <strong>55% GPU cost reduction</strong>, 5x user growth, zero infra expansion</li>
+      </ul>
+      <div class="tl-tags">
+        <span class="tl-tag">Triton</span><span class="tl-tag">vLLM</span><span class="tl-tag">OpenRTB</span>
+        <span class="tl-tag">SSAI/VAST</span><span class="tl-tag">Lucene</span><span class="tl-tag">AWS EKS</span>
+        <span class="tl-tag">Kafka</span><span class="tl-tag">CPC/CPV</span>
+      </div>
+    </div>
+
+    <div class="tl-entry">
+      <div class="tl-dot"></div>
+      <div class="tl-meta">
+        <span class="tl-date">Mar 2022 – Aug 2023</span>
+        <span class="tl-company">HCL Technologies · Hyderabad, India</span>
+      </div>
+      <div class="tl-role">ML Infrastructure Engineer &amp; AI Developer</div>
+      <ul class="tl-bullets">
+        <li>Deployed real-time ML inference on TorchServe (INT8/FP16 quantization) handling <strong>2M+ requests/day</strong> at 99.95% SLA</li>
+        <li>Built <strong>online/offline feature consistency framework</strong> (PySpark + Kafka Streams) — eliminated training-serving skew entirely, reduced debugging time by 80%</li>
+        <li>Established MLOps CI/CD: canary deployments, A/B testing, automated rollback — <strong>15+ models/month</strong> to production safely</li>
+        <li>Implemented Lucene-based search indexes for data catalog fast faceted lookup — sub-100ms inventory availability queries at production volume</li>
+        <li>P95/P99 monitoring across all endpoints — MTTR reduced by <strong>50%</strong></li>
+      </ul>
+      <div class="tl-tags">
+        <span class="tl-tag">TorchServe</span><span class="tl-tag">Azure ML</span><span class="tl-tag">Lucene</span>
+        <span class="tl-tag">PySpark</span><span class="tl-tag">Kafka Streams</span><span class="tl-tag">MLOps</span>
+      </div>
+    </div>
+
+    <div class="tl-entry">
+      <div class="tl-dot"></div>
+      <div class="tl-meta">
+        <span class="tl-date">Jun 2021 – Feb 2022</span>
+        <span class="tl-company">HCL Technologies · Vijayawada, India</span>
+      </div>
+      <div class="tl-role">ML / Data Engineer — Distributed Systems</div>
+      <ul class="tl-bullets">
+        <li>Deployed real-time scoring models on AWS SageMaker with Kubernetes HPA — <strong>$200K/year cloud cost reduction</strong>, sustained 10x traffic spikes</li>
+        <li>Java/Spring Boot microservices for real-time decisioning APIs — 500K+ req/day with gRPC and circuit-breaker fault tolerance</li>
+        <li>PySpark + AWS Glue ETL pipelines with Airflow orchestration — 50+ daily batch runs at SLA</li>
+      </ul>
+      <div class="tl-tags">
+        <span class="tl-tag">Java Spring Boot</span><span class="tl-tag">SageMaker</span>
+        <span class="tl-tag">Kubernetes</span><span class="tl-tag">PySpark</span>
+      </div>
+    </div>
+
+    <div class="tl-entry">
+      <div class="tl-dot"></div>
+      <div class="tl-meta">
+        <span class="tl-date">Jul 2020 – May 2021</span>
+        <span class="tl-company">HCL Technologies · Hyderabad, India</span>
+      </div>
+      <div class="tl-role">Spark / Python Developer</div>
+      <ul class="tl-bullets">
+        <li>GPU-accelerated distributed pipelines on PySpark/Hadoop — multi-TB processing time reduced by <strong>45%</strong></li>
+        <li>Kafka + Spark Streaming for real-time event pipelines at sub-second latency; NLP classification with ONNX Runtime — anomaly detection improved <strong>25%</strong></li>
+      </ul>
+      <div class="tl-tags">
+        <span class="tl-tag">PySpark</span><span class="tl-tag">Kafka</span><span class="tl-tag">ONNX</span><span class="tl-tag">NLP</span>
+      </div>
+    </div>
+
+    <div class="tl-entry">
+      <div class="tl-dot"></div>
+      <div class="tl-meta">
+        <span class="tl-date">Sep 2019 – Jun 2020</span>
+        <span class="tl-company">HCL Technologies · Hyderabad, India</span>
+      </div>
+      <div class="tl-role">Data Analyst / Python Developer</div>
+      <ul class="tl-bullets">
+        <li>Python automation &amp; Flask REST APIs for ETL workflows — manual overhead reduced by <strong>40%</strong></li>
+        <li>Tableau &amp; Power BI dashboards with P95/P99 SLA reporting for financial data warehouses</li>
+      </ul>
+      <div class="tl-tags">
+        <span class="tl-tag">Python</span><span class="tl-tag">Flask</span><span class="tl-tag">Docker</span><span class="tl-tag">Tableau</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <p class="sec-label">Selected work</p>
+  <h2 class="sec-h">KEY PROJECTS</h2>
+  <div class="proj-grid">
+
+    <div class="proj-card">
+      <span class="proj-num">01</span>
+      <span class="proj-tag">Ads Platform · Programmatic</span>
+      <div class="proj-name">Publisher-Side Ad Serving &amp; OpenRTB Programmatic Pipeline</div>
+      <div class="proj-desc">OpenRTB-compliant SSP integration handling bid requests/responses between Comcast inventory and programmatic demand. Dynamic CPM floor pricing, rate card management, and programmatic guaranteed/non-guaranteed allocation logic.</div>
+      <div class="proj-impact">↑ Fill rate by 22% · Dynamic pricing across 3 inventory tiers · Direct + programmatic unified auction</div>
+      <div class="proj-stack">
+        <span class="proj-pill">OpenRTB</span><span class="proj-pill">Java</span><span class="proj-pill">Kafka</span><span class="proj-pill">AWS EKS</span><span class="proj-pill">Prometheus</span>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <span class="proj-num">02</span>
+      <span class="proj-tag">LLM Infra · Cost Optimization</span>
+      <div class="proj-name">LLM Inference Cost Optimization Platform</div>
+      <div class="proj-desc">Multi-tenant LLM serving layer with vLLM + TensorRT-LLM, continuous batching, speculative decoding, and LoRA adapter swapping — serving multiple fine-tuned models from a single base with full Prometheus/Grafana observability.</div>
+      <div class="proj-impact">↓ 55% per-token GPU cost · 5x user growth, zero infra expansion · Deploy time 2 weeks → 4 hrs</div>
+      <div class="proj-stack">
+        <span class="proj-pill">vLLM</span><span class="proj-pill">TensorRT-LLM</span><span class="proj-pill">LoRA</span><span class="proj-pill">MLflow</span><span class="proj-pill">Grafana</span>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <span class="proj-num">03</span>
+      <span class="proj-tag">Search · Ad Tech</span>
+      <div class="proj-name">Lucene Ad Metadata Index &amp; Inventory Search</div>
+      <div class="proj-desc">Lucene index over millions of ad metadata records with NRT commit strategy and merge policy tuning. Sub-100ms faceted search for real-time inventory availability queries and audience segment lookup during ad decisioning.</div>
+      <div class="proj-impact">Sub-100ms inventory queries · Millions of records indexed · NRT refresh during high-write auction windows</div>
+      <div class="proj-stack">
+        <span class="proj-pill">Lucene</span><span class="proj-pill">Elasticsearch</span><span class="proj-pill">Java</span><span class="proj-pill">Kafka</span>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <span class="proj-num">04</span>
+      <span class="proj-tag">Perception · CV · Infra</span>
+      <div class="proj-name">High-Availability Perception &amp; Inference Platform</div>
+      <div class="proj-desc">Triton Inference Server + TensorRT on AWS SageMaker for NLP and computer vision workloads across 3,800+ restaurant locations. Kubernetes HPA + circuit breakers for 10x traffic spikes with real-time capacity planning dashboards.</div>
+      <div class="proj-impact">↓ 60% inference latency · 99.95% SLA · $200K annual cloud cost reduction</div>
+      <div class="proj-stack">
+        <span class="proj-pill">Triton</span><span class="proj-pill">TensorRT</span><span class="proj-pill">SageMaker</span><span class="proj-pill">Kubernetes</span>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <span class="proj-num">05</span>
+      <span class="proj-tag">MLOps · Feature Store</span>
+      <div class="proj-name">Online/Offline Feature Consistency Framework</div>
+      <div class="proj-desc">Java-based feature computation library with shared abstractions for batch (Spark) and online (Kafka Streams) pipelines enforcing bitwise consistency. Jaeger distributed tracing + automated drift detection in CI/CD.</div>
+      <div class="proj-impact">Zero training-serving skew · ↓ 80% model debugging time · Improved A/B test reliability by 30%</div>
+      <div class="proj-stack">
+        <span class="proj-pill">Java</span><span class="proj-pill">Spark</span><span class="proj-pill">Kafka Streams</span><span class="proj-pill">Jaeger</span>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <span class="proj-num">06</span>
+      <span class="proj-tag">Multi-Agent · GenAI</span>
+      <div class="proj-name">Multi-Agent AI Platform (LangGraph + MCP)</div>
+      <div class="proj-desc">LangGraph multi-agent system (supervisor, chat, task agents) with Triton-backed embedding/reranking at sub-20ms retrieval. Google A2A + Anthropic MCP for agent communication. MediaPipe + TF.js for visual perception.</div>
+      <div class="proj-impact">Sub-20ms retrieval latency · VLA model integration in progress · E-commerce personalization target</div>
+      <div class="proj-stack">
+        <span class="proj-pill">LangGraph</span><span class="proj-pill">MCP</span><span class="proj-pill">Triton</span><span class="proj-pill">MediaPipe</span><span class="proj-pill">TF.js</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements">
+  <p class="sec-label reveal">By the numbers</p>
+  <h2 class="sec-h reveal">IMPACT &amp; ACHIEVEMENTS</h2>
+  <div class="ach-grid">
+    <div class="ach-card"><div class="ach-num">60<span>%</span></div><div class="ach-label">Inference latency reduction</div></div>
+    <div class="ach-card"><div class="ach-num">55<span>%</span></div><div class="ach-label">GPU cost reduction (LLM serving)</div></div>
+    <div class="ach-card"><div class="ach-num">10K<span>+</span></div><div class="ach-label">Requests per second served</div></div>
+    <div class="ach-card"><div class="ach-num">$200<span>K</span></div><div class="ach-label">Annual cloud cost saved</div></div>
+    <div class="ach-card"><div class="ach-num">4<span>hr</span></div><div class="ach-label">Model deploy time (from 2 weeks)</div></div>
+    <div class="ach-card"><div class="ach-num">80<span>%</span></div><div class="ach-label">Reduction in model debugging time</div></div>
+    <div class="ach-card"><div class="ach-num">2M<span>+</span></div><div class="ach-label">Daily requests at 99.95% SLA</div></div>
+    <div class="ach-card"><div class="ach-num">50<span>%</span></div><div class="ach-label">MTTR reduction via P99 monitoring</div></div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <p class="sec-label reveal">Credentials</p>
+  <h2 class="sec-h reveal">EDUCATION &amp; CERTIFICATIONS</h2>
+  <div class="edu-grid">
+    <div>
+      <div class="edu-item reveal" style="margin-bottom:1rem;">
+        <div class="edu-deg">M.S. Computer Science — AI/ML Specialization</div>
+        <div class="edu-inst">Avila University · Kansas City, MO</div>
+        <div class="edu-yr">Jan 2024 – Dec 2025</div>
+      </div>
+      <div class="edu-item reveal">
+        <div class="edu-deg">B.Tech. Computer Science &amp; Engineering</div>
+        <div class="edu-inst">Maharaja Agrasen Himalayan Garhwal University</div>
+        <div class="edu-yr">Graduated 2022</div>
+      </div>
+    </div>
+    <div class="certs-list reveal">
+      <div class="cert-row"><div class="cert-dot"></div><div><div class="cert-name">AWS Solutions Architect – Associate</div><span class="cert-by">Amazon Web Services · SAA-C03</span></div></div>
+      <div class="cert-row"><div class="cert-dot"></div><div><div class="cert-name">Microsoft Azure Fundamentals</div><span class="cert-by">Microsoft · AZ-900</span></div></div>
+      <div class="cert-row"><div class="cert-dot"></div><div><div class="cert-name">TensorRT &amp; Triton Inference Server Optimization</div><span class="cert-by">NVIDIA Deep Learning Institute · 2023</span></div></div>
+      <div class="cert-row"><div class="cert-dot"></div><div><div class="cert-name">Kubernetes Administrator (CKA)</div><span class="cert-by">CNCF · 2022</span></div></div>
+      <div class="cert-row"><div class="cert-dot"></div><div><div class="cert-name">Deep Learning Specialization</div><span class="cert-by">Coursera / deeplearning.ai</span></div></div>
+      <div class="cert-row"><div class="cert-dot"></div><div><div class="cert-name">LangChain &amp; Vector Databases for Production</div><span class="cert-by">Activeloop</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <p class="sec-label">Let's work together</p>
+  <div class="contact-big">LET'S<br>TALK</div>
+  <p class="contact-sub">Open to senior AI/ML and Ads Platform roles. Let's build something exceptional.</p>
+  <div class="contact-links">
+    <a href="mailto:degavathlakansingh@gmail.com" class="c-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+      degavathlakansingh@gmail.com
+    </a>
+    <a href="tel:+13314311446" class="c-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+      +1 (331) 431-1446
+    </a>
+    <a href="https://linkedin.com/in/lakansingh" class="c-link" target="_blank">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+      linkedin.com/in/lakansingh
+    </a>
+  </div>
+  <p style="margin-top:4rem;font-family:var(--mono);font-size:10px;color:rgba(245,242,235,0.3);letter-spacing:0.12em;text-transform:uppercase;">Philadelphia, PA · 2026 · lakan-singh-degavath</p>
+</section>
+
+<script>
+// Custom cursor
+const cur = document.getElementById('cur');
+const curR = document.getElementById('curR');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px'});
+function animRing(){rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;curR.style.left=rx+'px';curR.style.top=ry+'px';requestAnimationFrame(animRing)}
+animRing();
+document.querySelectorAll('a,button,.proj-card,.skill-block').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cur.style.transform='translate(-50%,-50%) scale(2.5)';curR.style.opacity='0.1'});
+  el.addEventListener('mouseleave',()=>{cur.style.transform='translate(-50%,-50%) scale(1)';curR.style.opacity='0.4'});
+});
+
+// Scroll reveal
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible')}});
+},{threshold:0.12});
+document.querySelectorAll('.tl-entry,.ach-card,.reveal').forEach(el=>io.observe(el));
+
+// Stagger ach-cards
+document.querySelectorAll('.ach-card').forEach((el,i)=>{el.style.transitionDelay=`${i*0.06}s`});
+document.querySelectorAll('.tl-entry').forEach((el,i)=>{el.style.transitionDelay=`${i*0.08}s`});
+</script>
+</body>
+</html>
